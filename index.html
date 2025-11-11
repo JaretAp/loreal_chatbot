@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
+    <title>L'Oréal Beauty Chatbot</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -19,12 +19,24 @@
     <div class="page-wrapper">
       <!------- Header / Branding ------->
       <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
+        <img
+          src="img/loreal-logo.png"
+          alt="L'Oréal Paris logo"
+          class="loreal-logo"
+          width="180"
+          height="45"
+          loading="lazy"
+        />
+        <div class="tagline">
+          <p class="eyebrow">L'Oréal Beauty Concierge</p>
+          <h1 class="site-title">Personalized routines &amp; product intel</h1>
+        </div>
       </header>
 
       <!------- Chat Area ------->
       <main>
-        <section class="chatbox">
+        <section class="chatbox" aria-live="polite">
+          <div id="latestQuestion" class="latest-question visually-hidden"></div>
           <div id="chatWindow" class="chat-window">
             <!-- messages will be appended here via JS -->
           </div>
@@ -35,12 +47,12 @@
               id="userInput"
               name="userInput"
               type="text"
-              placeholder="Ask me about products or routines…"
+              placeholder="Ask me about L'Oréal products or routines..."
               autocomplete="off"
               required
             />
             <button type="submit" id="sendBtn">
-              <span class="material-icons">send</span>
+              <span class="material-icons" aria-hidden="true">send</span>
               <span class="visually-hidden">Send</span>
             </button>
           </form>
@@ -49,18 +61,15 @@
 
       <!------- Footer Links ------->
       <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
+        <p>&copy; 2025 L'Oréal. All rights reserved.</p>
         <nav>
-          <!-- These URLs are placeholders -->
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Contact</a>
+          <a href="https://www.loreal.com/en/worldwide/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          <a href="https://www.loreal.com/en/worldwide/terms-and-conditions/" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+          <a href="https://www.loreal.com/en/usa/consumer-care-center/" target="_blank" rel="noopener noreferrer">Contact</a>
         </nav>
       </footer>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
-    <script src="secrets.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

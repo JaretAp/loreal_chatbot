@@ -20,8 +20,8 @@ export default {
 
     const requestBody = {
       model: 'gpt-4o',
-      messages: userInput.messages,
-      max_completion_tokens: 300,
+      messages: userInput.messages ?? [],
+      max_tokens: 300,
     };
 
     const response = await fetch(apiUrl, {
@@ -33,8 +33,18 @@ export default {
       body: JSON.stringify(requestBody)
     });
 
-    const data = await response.json();
+    const raw = await response.text();
+    let data;
+    try {
+      data = JSON.parse(raw);
+    } catch (error) {
+      data = { error: { message: raw || 'Unknown error from OpenAI.' } };
+    }
 
-    return new Response(JSON.stringify(data), { headers: corsHeaders });
+    const status = response.ok ? 200 : response.status;
+    return new Response(JSON.stringify(data), {
+      status,
+      headers: corsHeaders
+    });
   }
 };
