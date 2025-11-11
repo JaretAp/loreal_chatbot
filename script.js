@@ -15,6 +15,10 @@ L'Oréal's portfolio. When relevant, suggest next steps or follow-up questions.`
 const messages = [{ role: "system", content: systemPrompt }];
 let typingBubble = null;
 
+const resetDisplayedConversation = () => {
+  chatWindow.innerHTML = "";
+};
+
 const createTypingIndicator = () => {
   const indicator = document.createElement("div");
   indicator.className = "msg ai";
@@ -103,6 +107,8 @@ chatForm.addEventListener("submit", async (event) => {
   const question = userInput.value.trim();
   if (!question) return;
 
+  // Show only the current prompt/response pair while keeping full history for the API
+  resetDisplayedConversation();
   appendMessage("user", question);
   updateLatestQuestion(question);
   messages.push({ role: "user", content: question });
